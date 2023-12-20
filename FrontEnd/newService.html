@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicio</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="lists.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar sticky-top navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><i class="fas fa-chevron-circle-left" style = "color:white; margin:10px" onclick="listaServicios()"></i></a>
+        </div>
+    </nav>
+
+
+     <div class="container mt-4">
+        <form>
+          <div class=" row mb-3">
+            <div class="col-md-1">
+              <label for="inputNumber" class="form-label">Cantidad:</label>
+              <input type="number" class="form-control" id="inputNumber" name="inputNumber">
+            </div>
+
+            <div class="col-md-3">
+              <label for="selectEditable" class="form-label">Descripcion del servicio:</label>
+              <select class="form-select" id="selectEditable" name="selectEditable">
+                <option value="opcion1">Opción 1</option>
+                <option value="opcion2">Opción 2</option>
+                <option value="opcion3">Opción 3</option>
+              </select>
+            </div>
+
+            <div class="col-md-2">
+              <label for="fecha" class="form-label">Fecha de realización:</label>
+              <input type="date" class="form-control" id="fecha" name="fecha">
+            </div>
+
+            <div class="col-md-2">
+              <label for="fecha" class="form-label">Fecha estimada cobro:</label>
+              <input type="date" class="form-control" id="fecha" name="fecha">
+            </div>
+
+            <div class="col-md-1">
+              <label for="inputNumber" class="form-label">Importe</label>
+              <input type="number" class="form-control" id="inputNumber" name="inputNumber">
+            </div>
+
+            <div class="col-md-1" style="margin-right:100px">
+              <label for="inputNumber" class="form-label">IVA %</label>
+              <input type="number" class="form-control" id="inputNumber" name="inputNumber">
+            </div>
+
+            <div class="col-md-1 form-check mt-3">
+              <label class="form-check-label" for="checkBox">Realizado</label>
+              <input type="checkbox" class="form-check-input" id="checkBox" name="checkBox">
+            
+              <label class="form-check-label" for="checkBox">Facturado</label>
+              <input type="checkbox" class="form-check-input" id="checkBox" name="checkBox">
+            
+              <label class="form-check-label" for="checkBox">Cobrado</label>
+              <input type="checkbox" class="form-check-input" id="checkBox" name="checkBox">
+            </div>
+
+
+            
+          </div>
+      
+         
+      
+          <div class="mb-3">
+            <label for="inputText" class="form-label">Texto:</label>
+            <input type="text" class="form-control" id="inputText" name="inputText">
+          </div>
+
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="checkBox" name="checkBox">
+            <label class="form-check-label" for="checkBox">Acepto los términos y condiciones</label>
+          </div>
+      
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+
+
+</body>
+</html>
