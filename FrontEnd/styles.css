@@ -1,0 +1,117 @@
+html,body,h4,button,span {font-family: "Source Sans Pro", sans-serif;}
+       
+body{
+    background-color: rgba(235, 230, 230, 0.725); 
+}
+
+/* Ajuste de estilos para el menú lateral */
+#sidebar {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0px; /* Inicialmente oculto fuera del área visible */
+    width: 250px;
+    background-color: white;
+    padding-top: 50px;
+    color: white;
+    transition: 0.3s;
+}
+
+#sidebar a { 
+    padding: 10px 50px;
+    text-decoration: none;
+    font-size: 15px;
+    color: gray;
+    display: block;
+    transition: 0.3s;
+}
+
+#sidebar img {
+    margin: 0;
+    padding-bottom: 20px;
+    width: 100%; /* Hace que la imagen ocupe el ancho completo del contenedor */
+    display: block; /* Elimina espacios en blanco debajo de la imagen */
+}
+
+#sidebar a:hover {
+    font-weight: bold;
+    color: black
+}
+
+#content {
+    transition: margin-left 0.3s;
+    padding: 16px;
+    margin-left: 250px;
+}
+
+h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.filasHover:hover {
+	cursor: pointer;
+	background-color: rgba(0, 145, 255, 0.317);
+}
+
+td {
+    font-size: small;
+    padding: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px; 
+}
+
+/* Estilo personalizado para la línea */
+.customLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Estilo personalizado para el filtro a la izquierda */
+.filter {
+    margin-right: auto;
+}
+
+/* Estilo personalizado para los botones a la derecha */
+.actionButtons {
+    display: flex;
+    align-items: center;
+    margin-right: 0;
+    justify-content: flex-end;
+}
+
+/* Estilo personalizado para los botones */
+.roundedButton {
+    border-radius: 50px; 
+    margin-left: 10px; 
+    background-color: #9b55ff;
+    width:150px;
+    color:white;
+}
+
+.containerList{
+    background-color: white;
+    width:auto;
+    height: 500px;
+    padding:10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+fieldset.border {
+    
+    border-radius: 5px; /* Borde redondeado, ajusta según sea necesario */
+    padding: 10px; /* Espaciado interno, ajusta según sea necesario */
+    margin-bottom: 50px;
+}
+
