@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,10 @@
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles.css">
-    
+    <!-- Incluye Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
 </head>
 <body>
   <script src="../script.js"></script>
@@ -26,6 +29,10 @@
             <legend class="mb-3">Datos del servicio</legend>
           <div class=" row mb-3">
            
+            <div class="col-md-3">
+              <label for="tipoServicioNew" class="form-label">Selecciona un tipo de servicio:</label>
+              <select class="form-select" id="tipoServicioNew" aria-label="Elige un tipo de servicio" ></select>
+            </div>
 
             <div class="col-md-3">
                 <label for="descripcionServicioNew" class="form-label">Descripción servicio:</label>
@@ -58,7 +65,7 @@
               <input type="checkbox" class="form-check-input" id="servicioRealizadoNew" name="servicioRealizado">
             
               <label for="servicioFacturaNew" class="form-check-label">Facturado</label>
-              <input type="checkbox" class="form-check-input" id="servicioFacturaNew" name="servicioFacturado">
+              <input type="checkbox" class="form-check-input" id="servicioFacturadoNew" name="servicioFacturado">
             
               <label for="servicioCobradoNew" class="form-check-label">Cobrado</label>
               <input type="checkbox" class="form-check-input" id="servicioCobradoNew" name="servicioCobrado">
@@ -113,7 +120,7 @@
 
           <div class="d-grid gap-2 d-md-flex justify-content-md-center">
               <!-- Botón Guardar -->
-                <button type="button" class="btn btn-primary" id="guardarServicioNew">Guardar</button>
+                <button type="button" class="btn btn-primary" id="guardarServicioNew" onclick="guardarNuevoServicio()">Guardar</button>
               
               <!-- Botón Cancelar -->
                 <button type="button" class="btn btn-danger ms-2" id="cancelarGuardarServicioNew">Cancelar</button>

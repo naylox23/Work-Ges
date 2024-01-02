@@ -20,9 +20,6 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 5
 // Aumenta el límite de escuchadores de eventos para evitar advertencias
 require('events').EventEmitter.prototype._maxListeners = 100;
 
-// Almacena las transacciones en un array (podría considerarse un almacenamiento en memoria simple)
-let transactionArray = [];
-
 // Habilita CORS para permitir solicitudes desde dominios diferentes
 app.use(cors());
 
@@ -39,7 +36,7 @@ app.use((err, req, res, next) => {
     res.status(500).send('Algo salió mal!');
 });
 
-// Configura el motor de plantillas para usar Handlebars (.hbs)
+// Configura el motor de plantillas para usar Handlebars (.hbs) -- PENDIENTE DE USO EN VERSIONES FUTURAS
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.hbs');
 

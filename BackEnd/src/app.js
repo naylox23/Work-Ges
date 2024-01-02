@@ -1,19 +1,28 @@
-const mysql = require ('mysql2');
+// Importa la librería mysql2/promise
+const mysql = require('mysql2/promise');
 
-const conexion = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    database: 'WorkAndGes',
-    user: 'root',
-    password: 'Nayara1234'
+// Crea un pool de conexiones para manejar la conexión a la base de datos
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  port: 3306,
+  password: '',
+  database: 'WorkAndGes',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-conexion.connect(function (error){
-    if (error){
-        throw error;
+
+
+// Comprueba la conexión
+pool.getConnection((err, connection) => {
+    if (err) {
+        throw err;
     } else {
         console.log('CONEXION EXITOSA');
     }
 });
 
-module.exports = conexion;
+// Exporta el pool para que pueda ser utilizado en otras partes de la aplicación
+module.exports = pool;

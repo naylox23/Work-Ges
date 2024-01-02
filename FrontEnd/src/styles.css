@@ -57,7 +57,7 @@ table {
 
 .filasHover:hover {
 	cursor: pointer;
-	background-color: rgba(0, 145, 255, 0.317);
+	background-color: rgba(191, 0, 255, 0.113)
 }
 
 td {
@@ -69,12 +69,52 @@ td {
     max-width: 100px; 
 }
 
+.etiquetaRealizado{
+    background-color: #6bb0e9;
+    border-radius: 50px; 
+    margin-right: 10px; 
+    padding: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color:white;
+}
+
+.etiquetaCobrado{
+    background-color: #bdc254;
+    
+    border-radius: 50px; 
+    margin-right: 10px; 
+    padding: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color:white;
+}
+
+.etiquetaFacturado{
+    background-color: #4fb8af;
+    border-radius: 50px; 
+    margin-right: 10px; 
+    padding: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color:white;
+}
+
 /* Estilo personalizado para la línea */
 .customLine {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+}
+
+.configCards{
+    border-radius: 20px;
+}
+
+.configCards:hover {
+	cursor: pointer;
+	border-color: #9b55ff;
 }
 
 /* Estilo personalizado para el filtro a la izquierda */
@@ -96,6 +136,14 @@ td {
     margin-left: 10px; 
     background-color: #9b55ff;
     width:150px;
+    color:white;
+}
+
+.roundedButtonNewTypeService {
+    border-radius: 50px; 
+    margin-left: 10px; 
+    background-color: #9b55ff;
+    width:60px;
     color:white;
 }
 
