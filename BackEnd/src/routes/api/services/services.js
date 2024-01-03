@@ -59,15 +59,23 @@ router.post('/', async (req, res) => {
 
         // Inicia la transacción
         await connection.beginTransaction();
-
+        
         // Comprueba si el cliente ya existe por NIF_CIF o teléfono
         const [existingClientRows] = await connection.query('SELECT id_cliente FROM Clientes WHERE telefono = ? OR NIF_CIF = ?', [telefono, NIF_CIF]);
 
         let idCliente;
-
         if (existingClientRows.length > 0) {
             // El cliente ya existe
             idCliente = existingClientRows[0].id_cliente;
+            await connection.query('UPDATE Clientes SET nom_cliente = ?, NIF_CIF = ?, telefono = ?, direccion = ?, cp = ?, localidad = ?, ciudad = ? WHERE id_cliente =?', 
+                [nom_cliente,
+                NIF_CIF,
+                telefono,
+                direccion,
+                cp,
+                localidad,
+                ciudad,
+                idCliente]);
         } else {
             // Inserta en la tabla Clientes
             const [resultInsertCliente] = await connection.query('INSERT INTO Clientes (nom_cliente, NIF_CIF, telefono, direccion, cp, localidad, ciudad) VALUES (?, ?, ?, ?, ?, ?, ?)', [nom_cliente, NIF_CIF, telefono, direccion, cp, localidad, ciudad]);
@@ -104,10 +112,8 @@ router.post('/', async (req, res) => {
         throw error;
     } 
 });
+
 //--------------------------------------------------------
-
-
-
 // Ruta para UPDATE
 router.put('/:id_clienteServicio', async (req, res) => {
     const id_clienteServicio = req.params.id_clienteServicio;
@@ -139,15 +145,27 @@ router.put('/:id_clienteServicio', async (req, res) => {
 
         // Inicia la transacción
         await connection.beginTransaction();
-
+        
+        
+        
         // Comprueba si el cliente ya existe por NIF_CIF o teléfono
         const [existingClientRows] = await connection.query('SELECT id_cliente FROM Clientes WHERE telefono = ? OR NIF_CIF = ?', [nuevoTelefonoClienteServicio, nuevoNifClienteServicio]);
-
+        
         let idCliente;
 
         if (existingClientRows.length > 0) {
             // El cliente ya existe
             idCliente = existingClientRows[0].id_cliente;
+            await connection.query('UPDATE Clientes SET nom_cliente = ?, NIF_CIF = ?, telefono = ?, direccion = ?, cp = ?, localidad = ?, ciudad = ? WHERE id_cliente =?', 
+                [nuevoNombreClienteServicio,
+                nuevoNifClienteServicio,
+                nuevoTelefonoClienteServicio,
+                nuevaDireccionClienteServicio,
+                nuevoCpClienteServicio,
+                nuevaLocalidadClienteServicio,
+                nuevaCiudadClienteServicio,
+                idCliente]);
+
         } else {
             // Inserta en la tabla Clientes
             const [resultInsertCliente] = await connection.query('INSERT INTO Clientes (nom_cliente, NIF_CIF, telefono, direccion, cp, localidad, ciudad) VALUES (?, ?, ?, ?, ?, ?, ?)', [nuevoNombreClienteServicio, nuevoNifClienteServicio, nuevoTelefonoClienteServicio, nuevaDireccionClienteServicio, nuevoCpClienteServicio, nuevaLocalidadClienteServicio, nuevaCiudadClienteServicio]);
@@ -155,8 +173,9 @@ router.put('/:id_clienteServicio', async (req, res) => {
         }
 
         // Actualiza la tabla ClientesServicios
-        const sqlServicios = 'UPDATE ClientesServicios SET nom_servicio = ?, descrip_servicio = ?, f_realizacion = ?, f_cobro = ?, importe = ?, iva = ?, estado_realizado = ?, estado_facturado = ?, estado_cobrado = ? WHERE id_clienteServicio = ?';
+        const sqlServicios = 'UPDATE ClientesServicios SET id_cliente = ?, nom_servicio = ?, descrip_servicio = ?, f_realizacion = ?, f_cobro = ?, importe = ?, iva = ?, estado_realizado = ?, estado_facturado = ?, estado_cobrado = ? WHERE id_clienteServicio = ?';
         const valuesServicios = [
+            idCliente,
             nuevoTipoServicio,
             nuevaDescripcionServicio,
             nuevaFechaRealizacion,
@@ -190,15 +209,18 @@ router.put('/:id_clienteServicio', async (req, res) => {
     }
 });
 
+//--------------------------------------------------------
+// Ruta para DELETE
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [rows] = await pool.query('DELETE FROM ClientesServicios WHERE id_clienteServicio = ?', [id]);
+        res.json(rows[0]);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al eliminiar el servicio');
+    }
+});
 
-// // Ruta para DELETE
-// router.delete('/:id', (req, res) => {
-//     const { id } = req.params;
-
-//     pool.query('DELETE FROM ClientesServicios WHERE id_clienteServicio = ?', [id], (error, results, fields) => {
-//         if (error) throw error;
-//         res.send('ClienteServicio eliminado correctamente');
-//     });
-// });
 
 module.exports = router;  

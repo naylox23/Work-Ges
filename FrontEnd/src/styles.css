@@ -9,7 +9,7 @@ body{
     height: 100%;
     position: fixed;
     top: 0;
-    left: 0px; /* Inicialmente oculto fuera del área visible */
+    left: 0px; 
     width: 250px;
     background-color: white;
     padding-top: 50px;
@@ -72,35 +72,30 @@ td {
 .etiquetaRealizado{
     background-color: #6bb0e9;
     border-radius: 50px; 
-    margin-right: 10px; 
-    padding: 10px;
+    margin-right: 2px; 
+    padding: 8px;
     padding-top: 3px;
     padding-bottom: 3px;
     color:white;
 }
-
-.etiquetaCobrado{
-    background-color: #bdc254;
-    
-    border-radius: 50px; 
-    margin-right: 10px; 
-    padding: 10px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    color:white;
-}
-
 .etiquetaFacturado{
     background-color: #4fb8af;
     border-radius: 50px; 
-    margin-right: 10px; 
-    padding: 10px;
+    margin-right: 2px; 
+    padding: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color:white;
+}
+.etiquetaCobrado{
+    background-color: #bdc254;
+    border-radius: 50px; 
+    padding: 8px;
     padding-top: 3px;
     padding-bottom: 3px;
     color:white;
 }
 
-/* Estilo personalizado para la línea */
 .customLine {
     display: flex;
     justify-content: space-between;
@@ -110,6 +105,7 @@ td {
 
 .configCards{
     border-radius: 20px;
+    width: 200px;
 }
 
 .configCards:hover {
@@ -150,16 +146,20 @@ td {
 .containerList{
     background-color: white;
     width:auto;
-    height: 500px;
-    padding:10px;
+    height: auto;
+    padding:5px;
     border-radius: 10px;
     margin-top: 10px;
 }
 
 fieldset.border {
-    
     border-radius: 5px; /* Borde redondeado, ajusta según sea necesario */
     padding: 10px; /* Espaciado interno, ajusta según sea necesario */
     margin-bottom: 50px;
+}
+
+#error-message-nombre, #error-message-nif, #error-message-telefono {
+    color: red;
+    display: none;
 }
 

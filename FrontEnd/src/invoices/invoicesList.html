@@ -20,22 +20,22 @@
     <!-- Navbar -->
     <nav class="navbar sticky-top navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="nav-item" href="#"><i class="fas fa-bars" style = "color:white; margin:10px" onclick="mostrarOcultarMenu()"></i></a>
+        <a class="nav-item" href="#"><i class="fas fa-bars" style = "color:white; margin:10px" onclick="botonMostrarOcultarMenuNavegacion()"></i></a>
       </div>
     </nav>
 
     <div id="sidebar">
       <img src="../logoProyect.png" alt="Descripción de la imagen">
-      <a href="#" id="menuServicios" onclick="changeMenu('menuServicios')"><i class="far fa-check-square"></i> Servicios</a>
-      <a href="#" id="menuFacturas" onclick="changeMenu('menuFacturas')" style="color: #9b55ff;"><i class="far fa-file-alt"></i> Facturas</a>
-      <a href="#" id="menuConfig" onclick="changeMenu('menuConfig')"><i class="fas fa-cog"></i> Configuración</a>
+      <a href="#" id="menuServicios" onclick="botonChangeMenu('menuServicios')"><i class="far fa-check-square"></i> Servicios</a>
+      <a href="#" id="menuFacturas" onclick="botonChangeMenu('menuFacturas')" style="color: #9b55ff;"><i class="far fa-file-alt"></i> Facturas</a>
+      <a href="#" id="menuConfig" onclick="botonChangeMenu('menuConfig')"><i class="fas fa-cog"></i> Configuración</a>
     </div>
 
     <div id="content">
     
     <h4>Facturas</h4>
 
-    <div class="container">
+    <div id="frameInvoicesList" class="container">
         <!-- Línea con Filtro y Botones Ovalados -->
         <div class="customLine">
           <!-- Filtro a la izquierda -->
@@ -59,7 +59,7 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col">Nº factura</th>
                   <th scope="col">Cliente</th>
                   <th scope="col">Fecha emisión</th>
                   <th scope="col">Fecha Cobro</th>
@@ -68,42 +68,7 @@
                   <th scope="col">Acciones</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr class="table-light">
-                    <th scope="row"><input type="checkbox"></th>
-                    <td>Cliente 1 jajajajaajajajajajajajjajaajjaa</td>
-                    <td>01/01/2023</td>
-                    <td>02/01/2023</td>
-                    <td>100.00 €</td>
-                    <td>Pendiente</td>
-                    <td>
-                      <a href="#"><i class="fas fa-eye" style="color:blue; margin-right:10px"></i></a>
-                    </td>
-                </tr>
-                <tr class="">
-                    <th scope="row"><input type="checkbox"></th>
-                    <td>Cliente 2</td>
-                    <td>03/01/2023</td>
-                    <td>04/01/2023</td>
-                    <td>150.00 €</td>
-                    <td>En Proceso</td>
-                    <td>
-                      <a href="#"><i class="fas fa-eye" style="color:blue; margin-right:10px"></i></a>
-                    <td>
-                </tr>
-                <tr class="table-light">
-                    <th scope="row"><input type="checkbox"></th>
-                    <td>Cliente 1</td>
-                    <td>01/01/2023</td>
-                    <td>02/01/2023</td>
-                    <td>100.00 €</td>
-                    <td>Pendiente</td>
-                    <td>
-                      <a href="#"><i class="fas fa-eye" style="color:blue; margin-right:10px"></i></a>
-                    </td>
-                </tr>
-                
-                </tbody>
+              <tbody id="filasTablaFacturas"></tbody>
                 
             </table>
         </div>

@@ -1,135 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicio</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles.css">
-    <!-- Incluye Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicio</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../styles.css" />
+  <!-- Incluye Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <script src="../script.js"></script>
-    <!-- Navbar -->
-    <nav class="navbar sticky-top navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#"><i class="fas fa-chevron-circle-left" style = "color:white; margin:10px" onclick="listaServicios()"><span style="margin-left:10px">Volver</span></i></a>
-        </div>
-    </nav>
+  <script src="../script.js"></script>
+  <!-- Navbar -->
+  <nav class="navbar sticky-top navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><i class="fas fa-chevron-circle-left" style="color: white; margin: 10px"
+          onclick="mostrarFrameListaServicios()"><span style="margin-left: 10px">Volver</span></i></a>
+    </div>
+  </nav>
 
-     <div class="container mt-4">
-        <form>
-          <fieldset class="border">
-            <legend class="mb-3">Datos del servicio</legend>
-          <div class=" row mb-3">
-
-            <div class="col-md-3">
-              <label for="tipoServicioModi" class="form-label">Selecciona un tipo de servicio:</label>
-              <select class="form-select" id="tipoServicioModi" aria-label="Elige un tipo de servicio" ></select>
-            </div>
-
-            <div class="col-md-3">
-                <label for="descripcionServicioModi" class="form-label">Descripción servicio:</label>
-                <input type="text" class="form-control" id="descripcionServicioModi" name="descripcionServicio" value="">
-            </div>
-
-            <div class="col-md-2">
-              <label for="fechaRealizacionModi" class="form-label">Fecha de realización:</label>
-              <input type="date" class="form-control" id="fechaRealizacionModi" name="fechaRealizacion">
-            </div>
-
-            <div class="col-md-2">
-              <label for="fechaCobroModi" class="form-label">Fecha estimada cobro:</label>
-              <input type="date" class="form-control" id="fechaCobroModi" name="fechaCobro">
-            </div>
-
-            <div class="col-md-1">
-              <label for="importeServicioModi" class="form-label">Importe</label>
-              <input type="number" class="form-control" id="importeServicioModi" name="importeServcio">
-            </div>
-
-            <div class="col-md-1" >
-              <label for="ivaServicioModi" class="form-label">IVA %</label>
-              <input type="number" class="form-control" id="ivaServicioModi" name="ivaServicio">
-            </div>
-          
-
-            <div class="col-md-1 form-check mt-3 " style="margin-left:30px">
-              <label for="servicioRealizadoModi" class="form-check-label">Realizado</label>
-              <input type="checkbox" class="form-check-input" id="servicioRealizadoModi" name="servicioRealizado">
-            
-              <label for="servicioFacturadoModi" class="form-check-label">Facturado</label>
-              <input type="checkbox" class="form-check-input" id="servicioFacturadoModi" name="servicioFacturado">
-            
-              <label for="servicioCobradoModi" class="form-check-label">Cobrado</label>
-              <input type="checkbox" class="form-check-input" id="servicioCobradoModi" name="servicioCobrado">
-            </div>
+  <div id="frameModifyService" class="container mt-4">
+    <form>
+      <fieldset class="border">
+        <legend class="mb-3">Datos del servicio</legend>
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label for="tipoServicio" class="form-label">Tipo de servicio:</label>
+            <select class="form-select" id="tipoServicio" aria-label="Elige un tipo de servicio"
+              name="tipoServicio"></select>
           </div>
-        </fieldset>
-      
-          <fieldset class="border">
-            <legend class="mb-3">Datos del Cliente</legend>
+
+          <div class="col-md-3">
+            <label for="descripcionServicio" class="form-label">Descripción servicio:</label>
+            <input type="text" class="form-control" id="descripcionServicio" name="descripcionServicio" value="" />
+          </div>
+
+          <div class="col-md-3">
+            <label for="fechaRealizacion" class="form-label">Fecha realización:</label>
+            <input type="date" class="form-control" id="fechaRealizacion" name="fechaRealizacion" />
+          </div>
+
+          <div class="col-md-3">
+            <label for="fechaCobro" class="form-label">Fecha cobro:</label>
+            <input type="date" class="form-control" id="fechaCobro" name="fechaCobro" />
+          </div>
+
+
+
           <div class="row mb-3">
-            <div class="col-md-4">
-              <label for="nombreClienteModi" class="form-label">Cliente/ Razón social:</label>
-              <input type="text" class="form-control" id="nombreClienteModi" name="nombreCliente">
+
+            <div class="col-md-2 mt-4">
+              <label for="importeServicio" class="form-label">Importe</label>
+              <input type="number" class="form-control" id="importeServicio" name="importeServcio" />
             </div>
-
-            <div class="col-md-2">
-              <label for="nifClienteModi" class="form-label">NIF/ CIF:</label>
-              <input type="text" class="form-control" id="nifClienteModi" name="nifCliente">
+  
+            <div class="col-md-2 mt-4">
+              <label for="ivaServicio" class="form-label">IVA %</label>
+              <input type="number" class="form-control" id="ivaServicio" name="ivaServicio" />
             </div>
-
-            <div class="col-md-2">
-              <label for="telefonoClienteModi" class="form-label">Teléfono:</label>
-              <input type="text" class="form-control" id="telefonoClienteModi" name="telefonoCliente">
+            <div class="col-md-2 form-check mt-5 ms-5" >
+              <label for="servicioRealizado" class="form-check-label">Realizado</label>
+              <input type="checkbox" class="form-check-input" id="servicioRealizado" name="servicioRealizado" />
             </div>
-
-            
-
-          </div>
-
-          <div class="row mb-5">
-            <div class="col-md-4">
-              <label for="direccionClienteModi" class="form-label">Direccion:</label>
-              <input type="text" class="form-control" id="direccionClienteModi" name="direccionCliente">
+            <div class="col-md-2 form-check mt-5 ms-3" >
+              <label for="servicioFacturado" class="form-check-label">Facturado</label>
+              <input type="checkbox" class="form-check-input" id="servicioFacturado" name="servicioFacturado" />
             </div>
-
-            <div class="col-md-2">
-              <label for="cpClienteModi" class="form-label">Código postal:</label>
-              <input type="text" class="form-control" id="cpClienteModi" name="cpCliente">
-            </div>
-
-            <div class="col-md-2">
-              <label for="localidadClienteModi" class="form-label">Localidad:</label>
-              <input type="text" class="form-control" id="localidadClienteModi" name="localidadCliente">
-            </div>
-
-            <div class="col-md-2">
-              <label for="ciudadClienteModi" class="form-label">Ciudad:</label>
-              <input type="text" class="form-control" id="ciudadClienteModi" name="ciudadCliente">
+            <div class="col-md-2 form-check mt-5 ms-3" >
+              <label for="servicioCobrado" class="form-check-label">Cobrado</label>
+              <input type="checkbox" class="form-check-input" id="servicioCobrado" name="servicioCobrado" />
             </div>
           </div>
-          </fieldset>
+        </div>
+      </fieldset>
 
-          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-              <!-- Botón Guardar -->
-                <button type="button" class="btn btn-primary" onclick="guardarServicioModi()">Guardar</button>
-              
-              <!-- Botón Cancelar -->
-                <button type="button" class="btn btn-danger ms-2" id="cancelarGuardarServicioModi">Cancelar</button>
-              
+      <fieldset class="border">
+        <legend class="mb-3">Datos del Cliente</legend>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="nombreCliente" class="form-label">Cliente/ Razón social:</label>
+            <input type="text" class="form-control" id="nombreCliente" name="nombreCliente" />
+            <div id="error-message-nombre">Por favor, ingrese un nombre.</div>
           </div>
-      
-        </form>
+
+          <div class="col-md-3">
+            <label for="nifCliente" class="form-label">NIF/ CIF:</label>
+            <input type="text" class="form-control" id="nifCliente" name="nifCliente" />
+            <div id="error-message-nif">Por favor, ingrese un nif/cif cliente o un teléfono.</div>
+          </div>
+
+          <div class="col-md-3">
+            <label for="telefonoCliente" class="form-label">Teléfono:</label>
+            <input type="text" class="form-control" id="telefonoCliente" name="telefonoCliente" />
+            <div id="error-message-telefono">Por favor, ingrese un teléfono o un nif/cif para el cliente.</div>
+          </div>
+        </div>
+
+        <div class="row mb-5">
+          <div class="col-md-6">
+            <label for="direccionCliente" class="form-label">Direccion:</label>
+            <input type="text" class="form-control" id="direccionCliente" name="direccionCliente" />
+          </div>
+
+          <div class="col-md-2">
+            <label for="cpCliente" class="form-label">CP:</label>
+            <input type="text" class="form-control" id="cpCliente" name="cpCliente" />
+          </div>
+
+          <div class="col-md-2">
+            <label for="localidadCliente" class="form-label">Localidad:</label>
+            <input type="text" class="form-control" id="localidadCliente" name="localidadCliente" />
+          </div>
+
+          <div class="col-md-2">
+            <label for="ciudadCliente" class="form-label">Ciudad:</label>
+            <input type="text" class="form-control" id="ciudadCliente" name="ciudadCliente" />
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <!-- Botón Guardar -->
+        <button type="button" class="btn btn-primary" onclick="botonGuardarServicioModi()">
+          Guardar
+        </button>
+
+        <!-- Botón Cancelar -->
+        <button type="button" class="btn btn-danger ms-2" id="cancelarGuardarServicioModi"
+          onclick="botonCancelarOperacionServicios()">
+          Cancelar
+        </button>
       </div>
-
-
+    </form>
+  </div>
 </body>
+
 </html>

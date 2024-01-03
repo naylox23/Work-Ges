@@ -14,7 +14,6 @@ const pool = mysql.createPool({
 });
 
 
-
 // Comprueba la conexión
 pool.getConnection((err, connection) => {
     if (err) {
