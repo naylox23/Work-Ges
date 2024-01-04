@@ -10,7 +10,7 @@ router.use('/services', require('./services/services.js'));
 // Utiliza la subruta '/servicesConfig' y vincula las rutas del módulo './services/servicesConfig.js'
 router.use('/servicesConfig', require('./services/servicesConfig.js'));
 
-//router.use('/clients', require('./clients/clients.js'));
+router.use('/clients', require('./clients/clients.js'));
 //router.use('/invoices', require('./invoices/invoices.js'));
 
 // Exporta el router para que pueda ser utilizado en otras partes de la aplicación

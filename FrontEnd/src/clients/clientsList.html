@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Servicios</title>
+  <title>Clientes</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
@@ -28,18 +28,19 @@
   <div class"container">
     <div id="sidebar">
       <img src="../logoProyect.png" alt="Descripción de la imagen">
-      <a href="#" id="menuServicios" onclick="botonChangeMenu('menuServicios')" style="color:#9b55ff"><i
+      <a href="#" id="menuServicios" onclick="botonChangeMenu('menuServicios')" ><i
           class="far fa-check-square"></i> Servicios</a>
       <a href="#" id="menuFacturas" onclick="botonChangeMenu('menuFacturas')"><i class="far fa-file-alt"></i>
         Facturas</a>
-        <a href="#" id="menuClientes" onclick="botonChangeMenu('menuClientes')" ><i class="fas fa-user-alt"></i> Clientes</a>
+
+      <a href="#" id="menuClientes" onclick="botonChangeMenu('menuClientes')" style="color:#9b55ff"><i class="fas fa-user-alt"></i> Clientes</a>
       <a href="#" id="menuConfig" onclick="botonChangeMenu('menuConfig')"><i class="fas fa-cog"></i> Configuración</a>
     </div>
 
     <div id="content">
-      <h4>Servicios</h4>
+      <h4>Clientes</h4>
 
-      <div id="frameServicesList" class="container">
+      <div id="frameClientsList" class="container">
         <!-- Línea con Filtro y Botones Ovalados -->
         <div class="customLine">
          
@@ -47,25 +48,12 @@
           <form id="formBusqueda">
             
             <input type="text" id="textoBuscadoFilter" name="textoBuscado" placeholder="Buscar...">
-
-            <select id="estadoFilter" name="estado">
-              
-              <option value="">Todos</option>
-              <hr>
-              <option value="NoRealizado">No realizado</option>
-              <option value="NoFacturado">No facturado</option>
-              <option value="NoCobrado">No cobrado</option>
-              <hr>
-              <option value="Realizado">Realizado</option>
-              <option value="Facturado">Facturado</option>
-              <option value="Cobrado">Cobrado</option>
-            </select>
             
           </form>
           <!-- Botones ovalados a la derecha -->
           <div class="actionButtons">
-            <button type="button" class="btn roundedButton" onclick="mostrarFrameNuevoServicio()">Nuevo
-              servicio</button>
+            <button type="button" class="btn roundedButton" onclick="mostrarFrameListaClientes()">Nuevo
+              cliente</button>
 
           </div>
         </div>
@@ -77,15 +65,15 @@
             <thead>
               <tr>
                 <th scope="col-md-2">Cliente</th>
-                <th scope="col-md-2">Descripción</th>
-                <th scope="col-md-2">F. Realiz.</th>
-                <th scope="col-md-2">F. Cobro</th>
-                <th scope="col-md-2">Importe</th>
-                <th scope="col-md-2">Estado</th>
-
+                <th scope="col-md-2">NIF/CIF</th>
+                <th scope="col-md-2">Telefono</th>
+                <th scope="col-md-2">Direccion</th>
+                <th scope="col-md-2">CP</th>
+                <th scope="col-md-2">Localidad</th>
+                <th scope="col-md-2">Ciudad</th>
               </tr>
             </thead>
-            <tbody id="filasTablaServicios"></tbody>
+            <tbody id="filasTablaClientes"></tbody>
 
           </table>
         </div>

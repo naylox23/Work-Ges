@@ -33,8 +33,10 @@
     <div class="mt-4">
       <!-- Botones ovalados a la derecha -->
       <div class="actionButtons">
+        <button type="button" class="btn roundedButton" id="botonDuplicarServicio">Duplicar</button>
         <button type="button" class="btn roundedButton" id="botonModificarServicio">Modificar</button>
-        <button type="button" class="btn roundedButton" id="botonEliminarServicio">Eliminar</button>
+        <button type="button" class="btn roundedButton" data-bs-toggle="modal"
+        data-bs-target="#modalEliminarServicio" id="btnAbrirModalEliminar">Eliminar</button>
       </div>
     </div>
   </div>
@@ -146,6 +148,29 @@
     </form>
   </div>
 
+  <div class="modal fade" id="modalEliminarServicio" tabindex="-1" aria-labelledby="eliminarServicioLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="eliminarServicioLabel">Nuevo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del cuerpo del modal -->
+          <div class=" row mb-3">
+            <p>¿Esta seguro que desea eliminar el servicio?</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-primary" onclick="botonEliminarServicio()">Aceptar</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+            >Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
