@@ -1,13 +1,11 @@
 window.onload = function () {
 
-    // Mapa para almacenar la relación entre id_servicio y nom_servicio
-    const servicioMap = new Map();
-
-
+    
+    const servicioMap = new Map(); // Mapa para almacenar la relación entre id_servicio y nom_servicio
     let listaServicios = []; // Variable para almacenar la lista de servicios
-    let listaClientes = [];
+    let listaClientes = []; // Variable para almacenar la lista de clientes
 
-    //Elementos del DOM
+    //Elementos del DOM services
     const tipoServicio = document.getElementById("tipoServicio");
     const descripcionServicio = document.getElementById("descripcionServicio");
     const fechaRealizacion = document.getElementById("fechaRealizacion");
@@ -24,42 +22,38 @@ window.onload = function () {
     const cpCliente = document.getElementById("cpCliente");
     const localidadCliente = document.getElementById("localidadCliente");
     const ciudadCliente = document.getElementById("ciudadCliente");
-    // Obtén el botón que abrirá el modal
-    const btnAbrirModalEliminar = document.getElementById('btnAbrirModalEliminar');
-
-    //ids ventana servicesList.html
     const frameServicesList = document.getElementById("frameServicesList");
     const filasTablaServicios = document.getElementById("filasTablaServicios");
-
-    //ids ventana viewService.htlm
     const frameViewService = document.getElementById("frameViewService");
     const botonDuplicarServicio = document.getElementById('botonDuplicarServicio');
-    const botonModificarServicio = document.getElementById(
-        "botonModificarServicio"
-    );
-    const btnEliminarServicio = document.getElementById(
-        "botonEliminarServicio"
-    );
-
-    //ids ventana modifyService.html
+    const botonModificarServicio = document.getElementById("botonModificarServicio");
+    const btnEliminarServicio = document.getElementById("botonEliminarServicio");
+    const btnAbrirModalEliminar = document.getElementById('btnAbrirModalEliminar');
     const frameModifyService = document.getElementById("frameModifyService");
-
-    //ids ventana newService.html
     const frameNewService = document.getElementById("frameNewService");
-    var errorMessage = document.getElementById("error-message");
+    const errorMessageNombreNifClienteObligatorio = document.getElementById("errorMessageNombreNifClienteObligatorio");
+    const errorMessageDescripcionServicio = document.getElementById('errorMessageDescripcionServicio');
+    const errorMessageNombreCliente = document.getElementById('errorMessageNombreCliente');
+    const errorMessageNifCliente = document.getElementById('errorMessageNifCliente');
+    const errorMessageTelefonoCliente = document.getElementById('errorMessageTelefonoCliente');
+    const errorMessageDireccionCliente = document.getElementById('errorMessageDireccionCliente');
+    const errorMessageCpCliente = document.getElementById('errorMessageCpCliente');
+    const errorMessageLocalidadCliente = document.getElementById('errorMessageLocalidadCliente');
+    const errorMessageCiudadCliente = document.getElementById('errorMessageCiudadCliente');
+    const errorMessageImporteServicio = document.getElementById('errorMessageImporteServicio');
+    const errorMessageIvaServicio = document.getElementById('errorMessageIvaServicio');
+    const errorMessageTipoServicioConfig = document.getElementById('errorMessageTipoServicioConfig');
+    const errorMessageImporteServicioConfig = document.getElementById('errorMessageImporteServicioConfig');
 
-    //id ventana clientsList.html
+    //Elementos del DOM clients
     const frameClientsList = document.getElementById('frameClientsList');
-    //ids ventana mainConfigPage.html
-    const frameMainConfigPage = document.getElementById("frameMainConfigPage");
 
-    //ids ventana configServices.html
+    //Elementos del DOM settings
+    const frameMainConfigPage = document.getElementById("frameMainConfigPage");
     const frameConfigServices = document.getElementById("frameConfigServices");
     const nombreTipoServicio = document.getElementById("tipoDeServicioConfig");
     const importeTipoServicio = document.getElementById("importeServicioConfig");
-    const filasTablaTipoServicios = document.getElementById(
-        "filasTablaTipoServicios"
-    );
+    const filasTablaTipoServicios = document.getElementById("filasTablaTipoServicios");
 
     //--------------------------------------------------------
     //Funciones para navegar entre ventanas
@@ -71,6 +65,7 @@ window.onload = function () {
         localStorage.setItem("id_clienteServicio", servicio.id_clienteServicio);
         window.location.href = "../services/viewService.html";
     };
+
     mostrarFrameNuevoServicio = function () {
         window.location.href = "../services/newService.html";
     };
@@ -88,12 +83,15 @@ window.onload = function () {
     mostrarFrameListaFacturas = function () {
         window.location.href = "../invoices/invoicesList.html";
     };
+
     mostrarFrameListaClientes = function(){
         window.location.href ="../clients/clientsList.html";
     };
+
     mostrarFrameConfiguracion = function () {
         window.location.href = "../settings/mainConfigPage.html";
     };
+
     mostrarFrameConfigServices = function () {
         window.location.href = "../settings/configServices.html";
     };
@@ -122,12 +120,13 @@ window.onload = function () {
         if (menu === "menuFacturas") {
             this.mostrarFrameListaFacturas();
         }
-        if (menu === "menuConfig") {
-            this.mostrarFrameConfiguracion();
-        }
         if (menu === "menuClientes"){
             this.mostrarFrameListaClientes();
         }
+        if (menu === "menuConfig") {
+            this.mostrarFrameConfiguracion();
+        }
+        
     };
 
     //--------------------------------------------------------
@@ -146,6 +145,7 @@ window.onload = function () {
 
         return dia + "-" + mes + "-" + anio;
     };
+
     //--------------------------------------------------------
     //Función que transforma la fecha al formato que necesita input type="date" YYYY-MM-DD
     dateToShowFromSQL = function (fecha) {
@@ -188,6 +188,7 @@ window.onload = function () {
                 console.error("Error al realizar la solicitud:", error)
             );
     }
+
     //--------------------------------------------------------
     filterResults = function () {
         const searchText = document.getElementById("textoBuscadoFilter").value.toUpperCase();
@@ -232,6 +233,7 @@ window.onload = function () {
         
         
     }
+
     //--------------------------------------------------------
     clienteCoincideConFiltro = function (cliente, searchText) {
 
@@ -403,7 +405,7 @@ window.onload = function () {
 
                 // Añade la nueva opción al combobox
                 tipoServicio.add(nuevaOpcion);
-                console.log(data);
+                
                 descripcionServicio.value = data.descrip_servicio;
                 fechaRealizacion.value = data.f_realizacion;
                 fechaCobro.value = data.f_cobro;
@@ -451,7 +453,7 @@ window.onload = function () {
                     
                     // Almacena la relación entre id_servicio y nom_servicio
                     servicioMap.set(option.value, option.textContent);
-                    console.log(servicioMap);
+                    
                 });
             })
             .catch((error) =>
@@ -479,6 +481,7 @@ window.onload = function () {
                 console.error("Error al realizar la solicitud:", error)
             );
     }
+
     //--------------------------------------------------------
     // Verifica si estamos en la página de configServices para realizar una GET request que obtener los tipos de servicio configurados y mostrarlos en la tabla
     if (frameConfigServices != null) {
@@ -489,6 +492,10 @@ window.onload = function () {
                 data.forEach((tipoServicioData) => {
                     const fila = document.createElement("tr");
                     fila.classList.add("filasHover");
+
+                    if(tipoServicioData.importe === null){
+                        tipoServicioData.importe = '';
+                    }
 
                     fila.innerHTML = `
                             <td>${tipoServicioData.nom_servicio}</td>
@@ -501,84 +508,200 @@ window.onload = function () {
                 console.error("Error al obtener tipos de servicio:", error)
             );
     }
+
+    //--------------------------------------------------------
+    verificaLongitudDato = function(tipoDato, longitud){
+        return tipoDato.length >= longitud;
+    }
+
+
+    //--------------------------------------------------------
+    verificarValidedDatos = function(){
+
+        let verificado = true;
+
+        if (importeServicio.value < 0){
+            errorMessageImporteServicio.textContent = 'El importe no puede tener un valor negativo.';
+            errorMessageImporteServicio.style.display = 'block';
+            return verificado = false;
+        } else {
+            errorMessageImporteServicio.display = 'none';
+        }
+        if (ivaServicio.value < 0){
+            errorMessageIvaServicio.textContent = 'El iva no puede tener un valor negativo.';
+            errorMessageIvaServicio.style.display = 'block';
+            return verificado = false;
+        } else {
+            errorMessageIvaServicio.style.display = 'none';
+        }
+
+        if(verificaLongitudDato(descripcionServicio.value, 50)){
+            errorMessageDescripcionServicio.textContent = 'La descripción no puede tener más de 50 caracteres';
+            errorMessageDescripcionServicio.style.display = 'block';
+            return verificado = false;
+        } else {
+            errorMessageDescripcionServicio.style.display = 'none';
+        }
+
+        if(verificaLongitudDato(telefonoCliente.value, 15)){
+            errorMessageTelefonoCliente.textContent = 'El teléfono del cliente no puede tener más de 15 caracteres';
+            errorMessageTelefonoCliente.style.display = 'block';
+            return verificado = false;
+        } else{
+            errorMessageTelefonoCliente.style.display = 'none';
+        }
+        if(verificaLongitudDato(direccionCliente.value, 100)){
+            errorMessageDireccionCliente.textContent = 'La dirección del cliente no puede tener más de 100 caracteres';
+            errorMessageDireccionCliente.style.display = 'block';
+            return verificado = false;
+        } else{
+            errorMessageDireccionCliente.style.display = 'none';
+        }
+        if(verificaLongitudDato(cpCliente.value, 10)){
+            errorMessageCpCliente.textContent = 'El código postal del cliente no puede tener más de 10 caracteres';
+            errorMessageCpCliente.style.display = 'block';
+            return verificado = false;
+        } else{
+            errorMessageCpCliente.style.display = 'none';
+        }
+        if(verificaLongitudDato(localidadCliente.value, 50)){
+            errorMessageLocalidadCliente.textContent = 'La localidad del cliente no puede tener más de 50 caracteres';
+            errorMessageLocalidadCliente.style.display = 'block';
+            return verificado = false;
+        } else{
+            errorMessageLocalidadCliente.style.display = 'none';
+        }
+        if(verificaLongitudDato(ciudadCliente.value, 50)){
+            errorMessageCiudadCliente.textContent = 'La ciudad del cliente no puede tener más de 50 caracteres';
+            errorMessageCiudadCliente.style.display = 'block';
+            return verificado = false;
+        } else{
+            errorMessageCiudadCliente.style.display = 'none';
+        }
+
+        return verificado;
+    }
+
+    verificarDatosNombreNifCliente = function (){
+        let verificado = true;
+        if(verificaLongitudDato(nombreCliente.value, 50)){
+            errorMessageNombreCliente.textContent = 'El nombre del cliente no puede tener más de 50 caracteres';
+            errorMessageNombreCliente.style.display = 'block';
+            return verificado = false;
+        } else {
+            errorMessageNombreCliente.style.display = 'none';
+        }
+        if(verificaLongitudDato(nifCliente.value, 10)){
+            errorMessageNifCliente.textContent = 'El nif/cif del cliente no puede tener más de 10 caracteres';
+            errorMessageNifCliente.style.display = 'block';
+            return verificado = false;
+        } else{
+            errorMessageNifCliente.style.display = 'none';
+        }
+        return verificado;
+    }
+
+    //--------------------------------------------------------
+    verificarValidedDatosTipoServicioConfig = function(){
+        let verificado = true;
+
+        if(verificaLongitudDato(nombreTipoServicio.value, 50)){
+            errorMessageTipoServicioConfig.textContent = 'hola.';
+            errorMessageTipoServicioConfig.style.display ='block';
+            return verificado = false;
+        } else {
+            errorMessageTipoServicioConfig.style.display = 'none';
+        }
+
+        if(nombreTipoServicio.value.trim() === '' ){
+            errorMessageTipoServicioConfig.textContent = 'El nombre del tipo de servicio no puede estar vacío.';
+            errorMessageTipoServicioConfig.style.display ='block';
+            return verificado = false;
+        } else {
+            errorMessageTipoServicioConfig.style.display = 'none';
+        
+        }
+
+        if (importeTipoServicio.value < 0){
+            errorMessageImporteServicioConfig.textContent = 'El importe del tipo de servicio no puede tener un valor negativo.';
+            errorMessageImporteServicioConfig.style.display = 'block';
+            return verificado = false;
+        } else {
+            errorMessageImporteServicioConfig.style.display = 'none';
+        }
+
+        return verificado;
+    }
+
     //--------------------------------------------------------
     // Botón para guardar un nuevo servicio en la tabla clientesServicios
     botonGuardarNuevoServicio = function () {
    
-        if(nifCliente.value.trim() === "" && telefonoCliente.value.trim() === ''){
-            errorMessage.style.display = "block";
-            nifCliente.focus();
-        }
-        else if (nombreCliente.value.trim() === "" ) {
-            // Mostrar el mensaje de error y establecer el foco en el campo
-            errorMessage.style.display = "block";
-            nombreCliente.focus();
-       
+        if(nombreCliente.value.trim() === "" && nifCliente.value.trim() === ""){
+            errorMessageNombreNifClienteObligatorio.textContent = 'Para guardar el servicio es necesario un nombre de cliente y su NIF/CIF'
+            errorMessageNombreNifClienteObligatorio.style.display = "block";
+            if(nombreCliente.value.trim() === ""){
+                nombreCliente.focus();
+            }
+            if(nifCliente.value.trim() === ""){
+                nifCliente.focus();
+            } 
         }
         else {
-            errorMessage.style.display = "none";
+            errorMessageNombreNifClienteObligatorio.style.display = "none";
 
-            
             let tipoServicioD = tipoServicio.text;
 
             if (!isNaN(tipoServicio.value)){
                 tipoServicioD = servicioMap.get(tipoServicio.value);
             }
 
-            // POST request
-            const NuevoServicio = {
-                id_servicio: tipoServicio.value,
-                nom_servicio: tipoServicioD,
-                descrip_servicio: descripcionServicio.value !== "" ? descripcionServicio.value : null,
-                f_realizacion: fechaRealizacion.value !== "" ? fechaRealizacion.value : null,
-                f_cobro: fechaCobro.value !== "" ? fechaCobro.value : null,
-                importe: importeServicio.value !== "" ? importeServicio.value : null,
-                iva: ivaServicio.value !== "" ? ivaServicio.value : null,
-                estado_realizado: servicioRealizado.checked ? (servicioRealizado.value = 1) : (servicioRealizado.value = 0),
-                estado_facturado: servicioFacturado.checked ? (servicioFacturado.value = 1) : (servicioFacturado.value = 0),
-                estado_cobrado: servicioCobrado.checked ? (servicioCobrado.value = 1) : (servicioCobrado.value = 0),
-                nom_cliente: nombreCliente.value,
-                NIF_CIF: nifCliente.value !== "" ? nifCliente.value : null,
-                telefono: telefonoCliente.value !== "" ? telefonoCliente.value : null,
-                direccion: direccionCliente.value !== "" ? direccionCliente.value : null,
-                cp: cpCliente.value !== "" ? cpCliente.value : null,
-                localidad: localidadCliente.value !== "" ? localidadCliente.value : null,
-                ciudad: ciudadCliente.value !== "" ? ciudadCliente.value : null,
-            };
+           if( verificarValidedDatos() && verificarDatosNombreNifCliente()){
 
-            fetch("http://localhost:3000/api/services", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(NuevoServicio),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("Servicio creado:", data.mensaje);
-                    mostrarFrameListaServicios();
+                // POST request
+                const NuevoServicio = {
+                    id_servicio: tipoServicio.value,
+                    nom_servicio: tipoServicioD,
+                    descrip_servicio: descripcionServicio.value !== "" ? descripcionServicio.value.trim() : null,
+                    f_realizacion: fechaRealizacion.value !== "" ? fechaRealizacion.value : null,
+                    f_cobro: fechaCobro.value !== "" ? fechaCobro.value : null,
+                    importe: importeServicio.value !== "" ? importeServicio.value : null,
+                    iva: ivaServicio.value !== "" ? ivaServicio.value : null,
+                    estado_realizado: servicioRealizado.checked ? (servicioRealizado.value = 1) : (servicioRealizado.value = 0),
+                    estado_facturado: servicioFacturado.checked ? (servicioFacturado.value = 1) : (servicioFacturado.value = 0),
+                    estado_cobrado: servicioCobrado.checked ? (servicioCobrado.value = 1) : (servicioCobrado.value = 0),
+                    nom_cliente: nombreCliente.value.trim(),
+                    NIF_CIF: nifCliente.value !== "" ? nifCliente.value.trim() : null,
+                    telefono: telefonoCliente.value !== "" ? telefonoCliente.value.trim() : null,
+                    direccion: direccionCliente.value !== "" ? direccionCliente.value.trim() : null,
+                    cp: cpCliente.value !== "" ? cpCliente.value.trim() : null,
+                    localidad: localidadCliente.value !== "" ? localidadCliente.value.trim() : null,
+                    ciudad: ciudadCliente.value !== "" ? ciudadCliente.value.trim() : null,
+                };
+
+                fetch("http://localhost:3000/api/services", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(NuevoServicio),
                 })
-                .catch((error) =>
-                    console.error("Error al realizar la solicitud:", error)
-                );
+                    .then((response) => response.json())
+                    .then((data) => {
+                        alert(data.mensaje);
+                        console.log("Servicio creado:", data.mensaje);
+                        mostrarFrameListaServicios();
+                    })
+                    .catch((error) =>
+                        console.error("Error al realizar la solicitud:", error)
+                    );
+            }
         }
     };
 
     //--------------------------------------------------------
     // Botón para guardar un servicio modificado en la tabla clientesServicios
     botonGuardarServicioModi = function () {
-        if(nifCliente.value.trim() === "" && telefonoCliente.value.trim() === ''){
-            errorMessage.style.display = "block";
-            nifCliente.focus();
-        }
-        else if (nombreCliente.value.trim() === "" ) {
-            // Mostrar el mensaje de error y establecer el foco en el campo
-            errorMessage.style.display = "block";
-            nombreCliente.focus();
-       
-        }
-        else {
-                errorMessage.style.display = "none";
 
             let tipoServicioModif = tipoServicio.value;
 
@@ -586,75 +709,84 @@ window.onload = function () {
                 tipoServicioModif = servicioMap.get(tipoServicio.value);
             }
 
-            // PUT request
-            const clienteServicioActualizado = {
-                nuevoTipoServicio: tipoServicioModif,
-                nuevaDescripcionServicio: descripcionServicio.value !== "" ? descripcionServicio.value : null,
-                nuevaFechaRealizacion: fechaRealizacion.value !== "" ? fechaRealizacion.value : null,
-                nuevaFechaCobro: fechaCobro.value !== "" ? fechaCobro.value : null,
-                nuevoImporteServicio: importeServicio.value !== "" ? importeServicio.value : null,
-                nuevoIvaServicio: ivaServicio.value !== "" ? ivaServicio.value : null,
-                nuevoServicioRealizadoModi: servicioRealizado.checked ? (servicioRealizado.value = 1) : (servicioRealizado.value = 0),
-                nuevoServicioFacturadoModi: servicioFacturado.checked ? (servicioFacturado.value = 1) : (servicioFacturado.value = 0),
-                nuevoServicioCobradoModi: servicioCobrado.checked ? (servicioCobrado.value = 1) : (servicioCobrado.value = 0),
-                nuevoNombreClienteServicio: nombreCliente.value,
-                nuevoNifClienteServicio: nifCliente.value !== "" ? nifCliente.value : null,
-                nuevoTelefonoClienteServicio: telefonoCliente.value !== "" ? telefonoCliente.value : null,
-                nuevaDireccionClienteServicio: direccionCliente.value,
-                nuevoCpClienteServicio: cpCliente.value !== "" ? cpCliente.value : null,
-                nuevaLocalidadClienteServicio: localidadCliente.value !== "" ? localidadCliente.value : null,
-                nuevaCiudadClienteServicio: ciudadCliente.value !== "" ? ciudadCliente.value : null,
-            };
-            console.log(clienteServicioActualizado);
+            if(verificarValidedDatos()){
 
-            fetch(
-                "http://localhost:3000/api/services/" +
-                localStorage.getItem("id_clienteServicio"),
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(clienteServicioActualizado),
-                }
-            )
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("Cliente actualizado:", data.mensaje);
-                    mostrarFrameListaServicios();
-                })
-                .catch((error) =>
-                    console.error("Error al realizar la solicitud:", error)
-                );
-        }
+                // PUT request
+                const clienteServicioActualizado = {
+                    nuevoTipoServicio: tipoServicioModif,
+                    nuevaDescripcionServicio: descripcionServicio.value !== "" ? descripcionServicio.value.trim() : null,
+                    nuevaFechaRealizacion: fechaRealizacion.value !== "" ? fechaRealizacion.value.trim() : null,
+                    nuevaFechaCobro: fechaCobro.value !== "" ? fechaCobro.value : null,
+                    nuevoImporteServicio: importeServicio.value !== "" ? importeServicio.value : null,
+                    nuevoIvaServicio: ivaServicio.value !== "" ? ivaServicio.value : null,
+                    nuevoServicioRealizadoModi: servicioRealizado.checked ? (servicioRealizado.value = 1) : (servicioRealizado.value = 0),
+                    nuevoServicioFacturadoModi: servicioFacturado.checked ? (servicioFacturado.value = 1) : (servicioFacturado.value = 0),
+                    nuevoServicioCobradoModi: servicioCobrado.checked ? (servicioCobrado.value = 1) : (servicioCobrado.value = 0),
+                    nuevoNombreClienteServicio: nombreCliente.value.trim(),
+                    nuevoNifClienteServicio: nifCliente.value !== "" ? nifCliente.value.trim() : null,
+                    nuevoTelefonoClienteServicio: telefonoCliente.value !== "" ? telefonoCliente.value.trim() : null,
+                    nuevaDireccionClienteServicio: direccionCliente.value.trim(),
+                    nuevoCpClienteServicio: cpCliente.value !== "" ? cpCliente.value.trim() : null,
+                    nuevaLocalidadClienteServicio: localidadCliente.value !== "" ? localidadCliente.value.trim() : null,
+                    nuevaCiudadClienteServicio: ciudadCliente.value !== "" ? ciudadCliente.value.trim() : null,
+                };
+               
+
+                fetch(
+                    "http://localhost:3000/api/services/" +
+                    localStorage.getItem("id_clienteServicio"),
+                    {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(clienteServicioActualizado),
+                    }
+                )
+                    .then((response) => response.json())
+                    .then((data) => {
+                        alert(data.mensaje);
+                        console.log("Servicio actualizado:", data.mensaje);
+                        mostrarFrameListaServicios();
+                    })
+                    .catch((error) =>
+                        console.error("Error al realizar la solicitud:", error)
+                    );
+            }
+        
     };
 
     //--------------------------------------------------------
     //Botón para guardar un nuevo tipo de servicio en la tabla de servicios (configuración)
     botonGuardarTipoDeServicio = function () {
-        const nuevoTipoServicio = {
-            nom_servicio: nombreTipoServicio.value,
-            importe:
-                importeTipoServicio.value !== "" ? importeTipoServicio.value : null,
-        };
+       
+        if(verificarValidedDatosTipoServicioConfig()){
 
-        fetch("http://localhost:3000/api/servicesConfig/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(nuevoTipoServicio),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Tipo de servicio creado.", data.mensaje);
-                mostrarFrameConfigServices();
-                //myModal.hide();
+            const nuevoTipoServicio = {
+                nom_servicio: nombreTipoServicio.value.trim(),
+                importe: importeTipoServicio.value !== "" ? importeTipoServicio.value : null,
+            };
+
+            fetch("http://localhost:3000/api/servicesConfig/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(nuevoTipoServicio),
             })
-            .catch((error) =>
-                console.error("Error al realizar la solicitud:", error)
-            );
+                .then((response) => response.json())
+                .then((data) => {
+                    alert(data.mensaje);
+                    console.log("Tipo de servicio creado.", data.mensaje);
+                    mostrarFrameConfigServices();
+                    
+                })
+                .catch((error) =>
+                    console.error("Error al realizar la solicitud:", error));
+        }
     };
+
+    //--------------------------------------------------------
     // Función para eliminar un servicio de la tabla clientesServicios cuando se hace click en eliminar
     botonEliminarServicio = function () {
         // DELETE request

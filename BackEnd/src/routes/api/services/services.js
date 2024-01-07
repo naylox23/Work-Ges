@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
 //--------------------------------------------------------
 // Ruta para INSERT
 router.post('/', async (req, res) => {
-    const {
+    let {
         id_servicio,
         nom_servicio,
         descrip_servicio,
@@ -61,21 +61,27 @@ router.post('/', async (req, res) => {
         await connection.beginTransaction();
         
         // Comprueba si el cliente ya existe por NIF_CIF o teléfono
-        const [existingClientRows] = await connection.query('SELECT id_cliente FROM Clientes WHERE telefono = ? OR NIF_CIF = ?', [telefono, NIF_CIF]);
+        const [existingClientRows] = await connection.query('SELECT * FROM Clientes WHERE NIF_CIF = ?', [NIF_CIF]);
 
         let idCliente;
         if (existingClientRows.length > 0) {
             // El cliente ya existe
+            if(telefono === null){ telefono = existingClientRows[0].telefono; }
+            if(direccion === null){ direccion = existingClientRows[0].direccion; }
+            if(cp === null) { cp = existingClientRows[0].cp; }
+            if(localidad === null) { localidad = existingClientRows[0].localidad }
+            if(ciudad === null) { ciudad = existingClientRows[0].ciudad }
             idCliente = existingClientRows[0].id_cliente;
-            // await connection.query('UPDATE Clientes SET nom_cliente = ?, NIF_CIF = ?, telefono = ?, direccion = ?, cp = ?, localidad = ?, ciudad = ? WHERE id_cliente =?', 
-            //     [nom_cliente,
-            //     NIF_CIF,
-            //     telefono,
-            //     direccion,
-            //     cp,
-            //     localidad,
-            //     ciudad,
-            //     idCliente]);
+
+            await connection.query('UPDATE Clientes SET nom_cliente = ?, telefono = ?, direccion = ?, cp = ?, localidad = ?, ciudad = ? WHERE id_cliente =?', 
+                [nom_cliente,
+                telefono,
+                direccion,
+                cp,
+                localidad,
+                ciudad,
+                idCliente]);
+
         } else {
             // Inserta en la tabla Clientes
             const [resultInsertCliente] = await connection.query('INSERT INTO Clientes (nom_cliente, NIF_CIF, telefono, direccion, cp, localidad, ciudad) VALUES (?, ?, ?, ?, ?, ?, ?)', [nom_cliente, NIF_CIF, telefono, direccion, cp, localidad, ciudad]);
@@ -118,7 +124,7 @@ router.post('/', async (req, res) => {
 router.put('/:id_clienteServicio', async (req, res) => {
     const id_clienteServicio = req.params.id_clienteServicio;
 
-    const {
+    let {
         nuevoTipoServicio,
         nuevaDescripcionServicio,
         nuevaFechaRealizacion,
@@ -149,22 +155,31 @@ router.put('/:id_clienteServicio', async (req, res) => {
         
         
         // Comprueba si el cliente ya existe por NIF_CIF o teléfono
-        const [existingClientRows] = await connection.query('SELECT id_cliente FROM Clientes WHERE telefono = ? OR NIF_CIF = ?', [nuevoTelefonoClienteServicio, nuevoNifClienteServicio]);
+        const [existingClientRows] = await connection.query('SELECT * FROM Clientes WHERE NIF_CIF = ?', [nuevoNifClienteServicio]);
         
         let idCliente;
 
         if (existingClientRows.length > 0) {
             // El cliente ya existe
+            if(nuevoTelefonoClienteServicio === null){ nuevoTelefonoClienteServicio = existingClientRows[0].telefono; }
+            if(nuevaDireccionClienteServicio === null){ nuevaDireccionClienteServicio = existingClientRows[0].direccion; }
+            if(nuevoCpClienteServicio === null) { nuevoCpClienteServicio = existingClientRows[0].cp; }
+            if(nuevaLocalidadClienteServicio === null) { nuevaLocalidadClienteServicio = existingClientRows[0].localidad }
+            if(nuevaCiudadClienteServicio === null) { nuevaCiudadClienteServicio = existingClientRows[0].ciudad }
+            
             idCliente = existingClientRows[0].id_cliente;
-            // await connection.query('UPDATE Clientes SET nom_cliente = ?, NIF_CIF = ?, telefono = ?, direccion = ?, cp = ?, localidad = ?, ciudad = ? WHERE id_cliente =?', 
-            //     [nuevoNombreClienteServicio,
-            //     nuevoNifClienteServicio,
-            //     nuevoTelefonoClienteServicio,
-            //     nuevaDireccionClienteServicio,
-            //     nuevoCpClienteServicio,
-            //     nuevaLocalidadClienteServicio,
-            //     nuevaCiudadClienteServicio,
-            //     idCliente]);
+            await connection.query('UPDATE Clientes SET nom_cliente = ?, NIF_CIF = ?, telefono = ?, direccion = ?, cp = ?, localidad = ?, ciudad = ? WHERE id_cliente =?', 
+                [nuevoNombreClienteServicio,
+                nuevoNifClienteServicio,
+                nuevoTelefonoClienteServicio,
+                nuevaDireccionClienteServicio,
+                nuevoCpClienteServicio,
+                nuevaLocalidadClienteServicio,
+                nuevaCiudadClienteServicio,
+                idCliente]);
+            
+                res.json({ mensaje: 'El cliente ya existe en la base de datos y se han modificado los nuevos datos introducidos.' });
+
 
         } else {
             // Inserta en la tabla Clientes

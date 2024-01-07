@@ -34,13 +34,23 @@ router.post('/', async (req, res) => {
             importe 
         } = req.body;
 
-        const sql = 'INSERT INTO Servicios (nom_servicio, importe) VALUES (?, ?)';
-        const values = [nom_servicio, importe];
+        
+        // Obtiene una conexión del pool
+        connection = await pool.getConnection();
 
-        // Realiza la inserción utilizando la función 'query' del pool con async/await
-        const [results] = await pool.query(sql, values);
+        const [existingServicesRows] = await connection.query('SELECT * FROM Servicios WHERE nom_servicio = ?', [nom_servicio]);
+        
+        if(existingServicesRows.length === 0){
+            const sql = 'INSERT INTO Servicios (nom_servicio, importe) VALUES (?, ?)';
+            const values = [nom_servicio, importe];
+            // Realiza la inserción utilizando la función 'query' del pool con async/await
+            const [results] = await pool.query(sql, values);
+            res.json({ mensaje: 'Servicio insertado correctamente', insertId: results.insertId });
+        } else {
+            res.json({ mensaje: 'El servicio ya existe en la base de datos'});
+        }
 
-        res.json({ mensaje: 'Servicio insertado correctamente', insertId: results.insertId });
+        
     } catch (error) {
         console.error(error);
         res.status(500).send('Error en la consulta INSERT de Servicios');
