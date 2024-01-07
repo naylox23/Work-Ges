@@ -1,5 +1,7 @@
+/* Establece la fuente del html */
 html,body,h4,button,span {font-family: "Source Sans Pro", sans-serif;}
-       
+ 
+/* Establece el color de fondo para el cuerpo de la página */
 body{
     background-color: rgba(235, 230, 230, 0.725); 
 }
@@ -17,6 +19,7 @@ body{
     transition: 0.3s;
 }
 
+/* Ajuste de estilos para las opciones (que son enlaces) del menú lateral*/
 #sidebar a { 
     padding: 10px 50px;
     text-decoration: none;
@@ -26,40 +29,47 @@ body{
     transition: 0.3s;
 }
 
+/* Ajuste de estilo para el logo de la aplicación que está en el menú de navegación lateral*/
 #sidebar img {
     margin: 0;
     padding-bottom: 20px;
-    width: 100%; /* Hace que la imagen ocupe el ancho completo del contenedor */
-    display: block; /* Elimina espacios en blanco debajo de la imagen */
+    width: 100%;
+    display: block;
 }
 
+/* Cambia el estilo al pasar el ratón sobre enlaces (opciones )en el menú lateral */
 #sidebar a:hover {
     font-weight: bold;
     color: black
 }
 
+/* Ajusta el contenido principal cuando se desplaza el menú de navegación lateral */
 #content {
     transition: margin-left 0.3s;
     padding: 16px;
     margin-left: 250px;
 }
 
+/* Estilos para encabezados h4 */
 h4 {
     margin-top: 10px;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
+/* Estilos para las tablas */
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
+/* Establece un color de fondo al pasar el ratón sobre filas de la tabla */
 .filasHover:hover {
 	cursor: pointer;
 	background-color: rgba(191, 0, 255, 0.113)
 }
 
+/* Estilos para celdas de la tabla */
 td {
     font-size: small;
     padding: 8px;
@@ -69,6 +79,7 @@ td {
     max-width: 100px; 
 }
 
+/* Estilos para la etiqueta de estado Realizado que está en las filas del listado de servicios*/
 .etiquetaRealizado{
     background-color: #6bb0e9;
     border-radius: 50px; 
@@ -78,6 +89,7 @@ td {
     padding-bottom: 3px;
     color:white;
 }
+/* Estilos para la etiqueta de estado Facturado que está en las filas del listado de servicios*/
 .etiquetaFacturado{
     background-color: #4fb8af;
     border-radius: 50px; 
@@ -87,6 +99,8 @@ td {
     padding-bottom: 3px;
     color:white;
 }
+
+/* Estilos para la etiqueta de estado Cobrado que está en las filas del listado de servicios*/
 .etiquetaCobrado{
     background-color: #bdc254;
     border-radius: 50px; 
@@ -96,6 +110,7 @@ td {
     color:white;
 }
 
+/* Estilos para que los filtros y los botones de las listas estén ordenados */
 .customLine {
     display: flex;
     justify-content: space-between;
@@ -103,22 +118,24 @@ td {
     padding: 10px;
 }
 
+/* Estilos para las tarjetas (opciones) de configuración (servicios y facturas) */
 .configCards{
     border-radius: 20px;
     width: 200px;
 }
 
+/* Cambia el estilo al pasar el ratón sobre tarjetas (opciones )de configuración (servicios y facturas) */
 .configCards:hover {
 	cursor: pointer;
 	border-color: #9b55ff;
 }
 
-/* Estilo personalizado para el filtro a la izquierda */
+/* Estilo personalizado para el filtro */
 .filter {
     margin-right: auto;
 }
 
-/* Estilo personalizado para los botones a la derecha */
+/* Estilo personalizado para los botones */
 .actionButtons {
     display: flex;
     align-items: center;
@@ -135,6 +152,7 @@ td {
     color:white;
 }
 
+/* Estilo personalizado para el botón que lleva al modal de crear nuevo tipo de servicio */
 .roundedButtonNewTypeService {
     border-radius: 50px; 
     margin-left: 10px; 
@@ -143,6 +161,7 @@ td {
     color:white;
 }
 
+/* Estilo para el contenedor de la lista */
 .containerList{
     background-color: white;
     width:auto;
@@ -152,12 +171,14 @@ td {
     margin-top: 10px;
 }
 
+/* Estilo para el fieldset que organiza los datos de las pantallas viewService.html, newService.html, modifyService.html*/
 fieldset.border {
-    border-radius: 5px; /* Borde redondeado, ajusta según sea necesario */
-    padding: 10px; /* Espaciado interno, ajusta según sea necesario */
+    border-radius: 5px; 
+    padding: 10px; 
     margin-bottom: 50px;
 }
 
+/* Estilo para mensajes de error */
 .errorMessage {
     color: red;
     background-color: rgba(255, 0, 0, 0.087);
@@ -167,6 +188,7 @@ fieldset.border {
     width: auto;
 }
 
+/* Estilos para el filtro de búsqueda */
 #textoBuscadoFilter{
     border-radius: 10px; 
     border: solid 1px;
@@ -174,7 +196,7 @@ fieldset.border {
     padding: 3px;
     padding-left: 10px;
 }
-
+/* Estilo para el filtro de estado*/
 #estadoFilter{
     border-radius: 10px; 
     margin-left: 10px; 
@@ -182,17 +204,18 @@ fieldset.border {
     padding: 5px;
 }
 
+/* Estilos para el contenedor principal de las páginas*/
 .contenedor {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px; /* 100% del viewport height */
+    height: 500px; 
    
   }
 
-  /* Estilo de la imagen */
+  /* Estilo de la imagen underConstruction.png */
   .imagen {
-    max-width: 100%; /* Asegura que la imagen no exceda el tamaño del contenedor */
-    max-height: 100%; /* Asegura que la imagen no exceda el tamaño del contenedor */
+    max-width: 100%; 
+    max-height: 100%; 
   }
 

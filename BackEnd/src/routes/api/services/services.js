@@ -177,9 +177,6 @@ router.put('/:id_clienteServicio', async (req, res) => {
                 nuevaLocalidadClienteServicio,
                 nuevaCiudadClienteServicio,
                 idCliente]);
-            
-                res.json({ mensaje: 'El cliente ya existe en la base de datos y se han modificado los nuevos datos introducidos.' });
-
 
         } else {
             // Inserta en la tabla Clientes
@@ -208,7 +205,7 @@ router.put('/:id_clienteServicio', async (req, res) => {
         // Confirma la transacción
         await connection.commit();
 
-        res.json({ mensaje: 'ServicioCliente actualizado correctamente' });
+        res.json({ mensaje: 'Se han modificado los nuevos datos introducidos.' });
 
     } catch (error) {
         // Si hay algún error, realiza un rollback

@@ -6,7 +6,7 @@ const dbConfig = {
   host: 'localhost',
   user: 'root',
   port: 3306,
-  password: '',
+  password: 'Nayara@@93_',
   database: 'WorkAndGes',
   waitForConnections: true,
   connectionLimit: 10,
